@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Dehazing</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+      }
+      form {
+        text-align: center;
+        margin-top: 20px;
+      }
+      input[type="file"] {
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #555;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      hr {
+        border: 0;
+        height: 2px;
+        background-color: white;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      img {
+        max-width: 40%;
+        display: block;
+        margin: auto;
+      }
+      table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #555;
+        text-align: center;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <h1>Image Dehazing</h1>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <input type="submit" value="Upload" />
+    </form>
+    <hr />
+    {% if image_stream_input %}
+    <h2>Input Image</h2>
+    <img
+      src="data:image/jpeg;base64,{{ image_stream_input }}"
+      alt="Input Image"
+    />
+    {% endif %}
+    <hr />
+    {% if image_stream_dcp %}
+    <h2>DCP Dehazed Image</h2>
+    <img
+      src="data:image/jpeg;base64,{{ image_stream_dcp }}"
+      alt="DCP Dehazed Image"
+    />
+    <h3>Metrics:</h3>
+    <table>
+      <tr>
+        <th>PSNR</th>
+        <th>MAE</th>
+        <th>RMSE</th>
+      </tr>
+      <tr>
+        <td>{{ psnr_dcp }}</td>
+        <td>{{ mae_dcp }}</td>
+        <td>{{ rmse_dcp }}</td>
+      </tr>
+    </table>
+    {% endif %}
+    <hr />
+    {% if image_stream_cnn %}
+    <h2>CNN Dehazed Image</h2>
+    <img
+      src="data:image/jpeg;base64,{{ image_stream_cnn }}"
+      alt="CNN Dehazed Image"
+    />
+    <h3>Metrics:</h3>
+    <table>
+      <tr>
+        <th>PSNR</th>
+        <th>MAE</th>
+        <th>RMSE</th>
+      </tr>
+      <tr>
+        <td>{{ psnr_cnn }}</td>
+        <td>{{ mae_cnn }}</td>
+        <td>{{ rmse_cnn }}</td>
+      </tr>
+    </table>
+    {% endif %}
+    <hr />
+    <h2>Footer Image</h2>
+    <img src={{url_for('static',filename='results.jpeg')}} alt="Footer Image" />
+  </body>
+</html>
