@@ -1,1 +1,5 @@
 # SatelliteImageDehazing
+    In recent years, the quality of satellite images has been significantly affected by atmospheric haze, which poses challenges for accurate interpretation and analysis. As a response to this issue, our project aims to develop effective dehazing algorithms tailored specifically for satellite imagery. 
+     This project focuses on improving the quality of satellite images through dehazing techniques and comparing different dehazing algorithms. It addresses the issue of image degradation due to atmospheric elements like haze using the Dark Channel Prior (DCP) algorithm and compares it with the Convolutional Neural Network algorithm using deep learning. 
+     The goal is to enhance environmental monitoring efforts by improving the reliability of satellite-based data. This project aims to contribute to the field of computer vision and environmental science by enhancing the clarity of satellite images for various applications, including land use monitoring, disaster management, and urban planning.
+
